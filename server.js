@@ -1,9 +1,11 @@
 var express = require('express');
 var app     = express();
-var http    = require('http').Server(app);
+var PORT    = process.env.PORT || 5000
 
 app.use(express.static(__dirname + '/public'));
 
-http.listen(80, function() {
-  console.log("Server is listening on port 80");
+app.get('/', function(_req,res) {
+  res.render('public/index.html');
 });
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`))
